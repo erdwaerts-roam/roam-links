@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html lang="de"> <head> <meta charset="utf-8"> <title>Roam - Bucket List beitreten</title> <meta name="viewport" content="width=device-width, initial-scale=1"> <style> body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #121212; color: white; text-align: center; margin: 0; padding: 20px; } .logo { font-size: 48px; margin-bottom: 10px; } h1 { color: #C2B280; font-size: 32px; margin-bottom: 10px; } p { opacity: 0.8; font-size: 18px; line-height: 1.5; max-width: 400px; } .btn { background: #C2B280; color: #1A1A1A; padding: 16px 32px; border-radius: 30px; text-decoration: none; font-weight: bold; margin-top: 30px; transition: transform 0.2s; } .btn:active { transform: scale(0.95); } .loader { width: 40px; height: 40px; border: 4px solid #333; border-top: 4px solid #C2B280; border-radius: 50%; animation: spin 1s linear infinite; margin-top: 20px; } @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } } </style> </head> <body> <div class="logo">📍</div> <h1>roam</h1> <p>Einen Moment... Wir verbinden dich mit der Bucket List.</p> <div class="loader" id="loader"></div>
+
+<a href="https://play.google.com/store/apps/details?id=com.erdwaerts.roam" class="btn" id="manualBtn">App im Play Store öffnen</a>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const listId = urlParams.get('listId');
+    const playStoreUrl = "https://play.google.com/store/apps/details?id=com.erdwaerts.roam";
+    
+    // Wenn ein listId vorhanden ist, wurde der Link geteilt
+    if (listId) {
+        // Falls der Nutzer hier landet und die App nicht automatisch öffnet:
+        // Nach 3 Sekunden zum Play Store leiten
+        setTimeout(function() {
+            document.getElementById('loader').style.display = 'none';
+            window.location.href = playStoreUrl;
+        }, 3500);
+    } else {
+        // Ohne listId direkt zum Play Store
+        window.location.href = playStoreUrl;
+    }
+</script>
